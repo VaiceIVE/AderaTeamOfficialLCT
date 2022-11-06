@@ -1,0 +1,61 @@
+$maxWidthContainer: 1840;
+$md1: $maxWidthContainer + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+
+@import "_reset";
+@import "_main";
+
+@import "./create/_create";
+@import "./create/_download";
+@import "./create/_view";
+@import "./create/_panel";
+@import "./create/_table";
+
+@import "./components/_header";
+@import "./components/_qa";
+@import "./components/_projects";
+@import "./components/_last-projects.scss";
+
+@import "./pages/_home";
+@import "./pages/_about-us";
+@import "./pages/_tutorial";
+
+._container {
+    max-width: $maxWidthContainer + px;
+    margin: 0 auto;
+    @media (max-width: ($md1 + px)) {
+        max-width: 970px;
+    }
+    @media (max-width: ($md2 + px)) {
+        max-width: 750px;
+    }
+    @media (max-width: ($md3 + px)) {
+        max-width: none;
+        padding: 0 16px;
+    }
+}
+
+._container-landing {
+    max-width: 1530px;
+    margin: 0 auto;
+    @media (max-width: (1544px)) {
+        max-width: 970px;
+    }
+    @media (max-width: ($md2 + px)) {
+        max-width: 750px;
+    }
+    @media (max-width: ($md3 + px)) {
+        max-width: none;
+        padding: 0 16px;
+    }
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}

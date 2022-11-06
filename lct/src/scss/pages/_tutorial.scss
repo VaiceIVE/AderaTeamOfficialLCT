@@ -1,0 +1,53 @@
+.tutorial {
+    background: #F6F6F6;
+    padding-top: 81px;
+    padding-bottom: 100px;
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 80px;
+    }
+    &__block {
+        width: 290px;
+        img {
+            margin-bottom: 25px;
+        }
+    }
+    &__heading {
+        margin-bottom: 10px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29px;
+        color: #101010;
+    }
+    &__text {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 29px;
+        color: #101010;
+        i {
+            color: #FF5840;
+        }
+    }
+}
+
+.footer {
+    height: 128px;
+    background: #FF5840;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__row {
+        display: flex;
+        img {
+            margin-right: 40px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}

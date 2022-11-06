@@ -1,0 +1,5 @@
+.last-projects__row {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}

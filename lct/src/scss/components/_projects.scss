@@ -1,0 +1,73 @@
+.projects {
+    &__row {
+        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+    &__heading {
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 39px;
+        color: #101010;
+        margin-bottom: 40px;
+    }
+    &__btn {
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        width: 270px;
+        height: 80px;
+        background: #FF5840;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            color: #FFFFFF;
+            img {
+                margin-right: 10px;
+            }
+        }
+        transition: all 0.3s;
+        &:hover {
+            background: #d6371e;
+        }
+    }
+    &__form {
+        margin-top: 50px;
+        input {
+            margin-right: 20px;
+            width: 600px;
+            height: 44px;
+            padding: 10px 20px;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            color: rgba(16, 16, 16, 0.5);
+            border: 1px solid rgba(16, 16, 16, 0.2);
+            border-radius: 10px;
+        }
+        input::placeholder {
+            background: url("../image/project/plaseholder.svg") no-repeat;
+            color: #FFFFFF;
+        }
+        select {
+            width: 445px;
+            height: 44px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;       /* Remove default arrow */
+            background-image: url("../image/qa/bg.svg");
+        }
+    }
+}

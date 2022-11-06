@@ -1,0 +1,63 @@
+.last-projects {
+    &__row {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin-top: 40px;
+        padding-bottom: 60px;
+    }
+    &__heading {
+        margin-bottom: 30px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29px;
+        color: #101010;
+    }
+    &__block {
+        display: flex;
+        align-items: center;
+        padding-left: 16px;
+        padding-right: 40px;
+        justify-content: space-between;
+        width: 1840px;
+        height: 80px;
+        background: #F7F7F7;
+        border-radius: 10px;
+        transition: all 0.3s;
+        &:hover {
+            background: #FFE9E9;
+        }
+        margin-bottom: 10px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &__head {
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+        color: #101010;
+        width: 400px;
+    }
+    &__icon {
+        width: 48px;
+        height: 48px;
+        background: #101010;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+    }
+    &__autor, &__date, &__state {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        color: rgba(16, 16, 16, 0.5);
+    }
+    &__btn {
+        cursor: pointer;
+    }
+}
