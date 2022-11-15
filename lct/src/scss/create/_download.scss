@@ -131,4 +131,10 @@
         line-height: 19px;
         color: rgba(16, 16, 16, 0.5);
     }
+    &__str {
+        width: 850px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

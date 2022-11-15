@@ -33,11 +33,13 @@ function HeaderLoc(props) {
         return(
             <div className="header__row">
                 <div className="header__menu">
-                    <img src={menu}/>
                     <NavLink to='/'>
                         <img src={logo}
                         alt="logo"
                         />
+                    </NavLink>
+                    <NavLink to="/guide">
+                        <div className="header__spisok">Справочник ключевых слов</div>
                     </NavLink>
                 </div>
                 <div className="header__panel">

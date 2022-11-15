@@ -7,7 +7,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://localhost:8000/api/table/"
+        "https://2051-188-72-108-227.eu.ngrok.io/api/table/"
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -24,7 +24,6 @@ def exeltable(file: UploadFile):
     with open('tables/' + file.filename, "wb") as wf:
         shutil.copyfileobj(file.file, wf)
         file.file.close()
-
     return exProcess(file.filename)
 
 @app.post('/addkpgz')

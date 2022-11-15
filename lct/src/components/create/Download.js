@@ -9,9 +9,10 @@ import edit from "../../image/last-projects/edit.svg";
 
 import { Data } from "../../data/Data";
 import { ResultData } from "../../data/ResultData";
+var  i = 0;
 
 export default class Download extends React.Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -19,23 +20,27 @@ export default class Download extends React.Component {
             number: 0,
             historyData: [],
             n: 0,
-            reult: []
+            result: "Ожидание загрузки",
+            address: "",
         };
-
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
     };
-    
+
     componentDidMount() {
         this.setState({
             n: 0,
-        })
+        });
+        i+=1;
+        if (i>-1 && ResultData[i-1] === undefined) {
+            i-=1;
+        };
     }
 
     handleClick = (event) => {
         const formData = new FormData();
         if (event.target.id === "upload" && this.state.file != null && this.state.n === 0) {
-
+            this.setState({ result : "Обработка..."})
             formData.append(
                 'file',
                 this.state.file,
@@ -43,16 +48,24 @@ export default class Download extends React.Component {
             );
 
             console.log("Ok");
-            axios.post('https://764a-188-72-108-227.eu.ngrok.io/api/table', formData, {
+            axios.post('http://localhost:8000/api/table', formData, {
                 headers: {
                     'Content-Type': `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; boundary=${formData._boundary}`
                 }
             }).then((responseFromServer2) => {
                 ResultData.push(responseFromServer2.data);
+                for (let j = 0; j < ResultData[i].length; j++) {
+                    ResultData[i].map(item => {
+                        if (item.addr === " ") {
+                            item.addr = this.state.address;
+                        };
+                    })
+                };
                 this.setState({ n : 1 });
+                this.setState({ result : "Готово для создания"});
             }).catch((err) => {
                 console.log(err);
-            })
+            });
 
             let NewData = {
                 icon: edit,
@@ -60,30 +73,32 @@ export default class Download extends React.Component {
                 date: JSON.stringify(this.state.file.lastModifiedDate),
                 state: "Редактируется",
             };
-            
+
             if (Array.isArray(Data)) {
                 Data.push(NewData);
             } else {
                 console.log('arr variable does not store an array');
             }
         };
-        
-        if (event.target.id === "del") {
-            console.log(this.state.historyData);
-        };
     };
-    
+
     handleChange(event){
         if (event.target.id === "smeta") {
             this.setState({
                 file: event.target.files && event.target.files[0],
             });
-        }
+        };
         if (event.target.id === "number") {
             this.setState({
                 number: event.target.value,
             })
-        }
+        };
+        if (event.target.id === "address") {
+            this.setState({
+                address: event.target.value,
+            })
+            console.log(this.state.address);
+        };
     };
 
     render() {
@@ -112,22 +127,25 @@ export default class Download extends React.Component {
                             <li className="download__block">
                                 <h3 className="download__name">Шаблон ТЗ</h3>
                                 <select name="select" defaultValue="s1">
+                                    <option value="s3">Благоустройство территорий</option>
+                                    <option value="s2">Обустройство велосипедной инфраструктуры</option>
                                     <option value="s1">Не выбрано</option>
-                                    <option value="s2">Не выбрано</option>
-                                    <option value="s3">Не выбрано</option>
                                 </select>
                             </li>
                             <li className="download__block">
                                 <h3 className="download__name">КПГЗ</h3>
                                 <select name="select" defaultValue="s1">
                                     <option value="s1">Не выбрано</option>
-                                    <option value="s2">Не выбрано</option>
-                                    <option value="s3">Не выбрано</option>
+                                    <option value="s2">ОБУСТРОЙСТВО МАФ ТЕРРИТОРИЙ</option>
+                                    <option value="s3">РЕМОНТ ВЕЛОСИПЕДНОЙ ИНФРАСТРУКТУРЫ</option>
                                 </select>
                             </li>
                             <li className="download__block">
                                 <h3 className="download__name">Адрес</h3>
                                 <input
+                                id = "address"
+                                value={this.address} 
+                                onChange={this.handleChange}
                                 placeholder="Распознать из сметы"
                                 ></input>
                             </li>
@@ -141,14 +159,17 @@ export default class Download extends React.Component {
                                 ></input>
                             </li>
                         </ul>
-                        <button
-                        onClick={this.handleClick}
-                        id="upload">
-                            <img src={reload}/>
-                            Анализ документа
-                        </button>
+                        <div className="download__str">
+                            <button
+                            onClick={this.handleClick}
+                            id="upload">
+                                <img src={reload}/>
+                                Анализ документа
+                            </button>
+                            {this.state.result}
+                        </div>
                     </div>
-                </div>  
+                </div> 
             </section>
         )
     };

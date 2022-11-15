@@ -24,10 +24,11 @@
         &:last-child {
             margin-right: 0;
         }
-        img {
-            width: 24px;
-            height: 24px;
-        }
+        
+    }
+    &__img {
+        width: 24px;
+        height: 24px;
     }
     &__column {
         display: flex;

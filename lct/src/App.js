@@ -8,6 +8,7 @@ import Main from './routes/Main';
 import Create from './routes/Create';
 import Landing from './routes/Landing';
 import CreatePage from './components/create/CreatePage';
+import Guide from './components/Guide';
 
 function App() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function App() {
         <Header name="Роман"/>
         <Routes>
           <Route path='/' element={<Landing/>}/>
+          <Route path='/guide' element={<Guide/>}/>
           <Route path="/app" element={<Main/>}/>
           <Route path='/app/create/' element={<Create/>}/>
           <Route path='/app/create/:id' element={<CreatePage location={location}/>}/>

@@ -1,7 +1,8 @@
 import React from "react";
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
 
 import exp from "../../image/panel/export.svg";
-import save from "../../image/panel/save.svg";
 
 import { ResultData } from "../../data/ResultData";
 
@@ -12,19 +13,18 @@ export default class BotPanel extends React.Component {
         this.state = {
             k: 0,
             n: -1,
+            fileType : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8',
+            fileExtension : '.xlsx'
         }
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(event) {
-        if (event.target.id === "export"){
-            this.setState({
-                k: this.state.k + 1,
-            });
-        }
-        if (event.target.id === "save" && this.state.k > 0) {
-            console.log("done");
-        } 
+    handleClick(csvData, fileName) {
+        const ws = XLSX.utils.json_to_sheet(csvData);
+        const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+        const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+        const data = new Blob([excelBuffer], {type: this.state.fileType});
+        FileSaver.saveAs(data, fileName + this.state.fileExtension);
     }
 
     componentDidMount() {
@@ -33,30 +33,9 @@ export default class BotPanel extends React.Component {
         if (i>-1 && ResultData[i-1] === undefined) {
             i-=1;
         }
-        console.log(i);
-    }
-
-    saveStyle() {
-        let style = {};
-        if (ResultData[i] !== undefined) {
-            style = {
-                "background": "#FF5840",
-                "cursor": "pointer",
-            }
-        }
-        return style
     }
 
     render() {
-        let style = {
-            "background": "rgba(16, 16, 16, 0.2)",
-        }
-        if (ResultData[i] !== undefined) {
-            style = {
-                "background": "#FF5840",
-                "cursor": "pointer",
-            }
-        }
         return(
             <section className="panel">
                 <div className="panel__content _container">
@@ -68,13 +47,9 @@ export default class BotPanel extends React.Component {
                             />
                         </form>
                         <div className="panel__btns" >
-                            <div className="panel__export" id="export" onClick={this.handleClick}>
+                            <div className="panel__export" id="export" onClick={(e) => {this.handleClick(ResultData[i],"Смета")}}>
                                 <img src={exp}/>
                                 Экспорт
-                            </div>
-                            <div className="panel__save" style={style} id="save" onClick={this.handleClick}>
-                                <img src={save}/>
-                                Сохранить
                             </div>
                         </div>
                     </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import "../../css/style.css";
 import { ResultData } from "../../data/ResultData";
-import { Pages } from "../../data/Pages";
 import edit from "../../image/table/edit.svg";
+import PanelCreate from "./PanelCreate";
 
 export default class CreatePage extends React.Component {
 
@@ -47,7 +47,7 @@ export default class CreatePage extends React.Component {
         items[id-1].unit = this.state.unit || this.state.edit[id-1].unit;
         items[id-1].singlecost = this.state.singlecost || this.state.edit[id-1].singlecost;
         items[id-1].allcost = this.state.allcost || this.state.edit[id-1].allcost;
-        items[id-1].address = this.state.address || this.state.edit[id-1].address;
+        items[id-1].addr = this.state.address || this.state.edit[id-1].addr;
         this.setState({items});
         console.log(typeof(this.state.items.singlecost));
     }
@@ -85,9 +85,16 @@ export default class CreatePage extends React.Component {
     }
 
     render() {
-        
+        const style = {
+            "marginBottom" : "30px"
+        };
         return(
             <section className="table">
+                <div className="create__bot-bg" style={style}>
+                    <div className="create__content _container">
+                        <PanelCreate location = {this.props.location}/> 
+                    </div>
+                </div>
                 <div className="table__content _container">
                     <div className="table__row">
                         <form className="table__form">
@@ -125,7 +132,7 @@ export default class CreatePage extends React.Component {
                             </label>
                             <label>
                                 Адрес
-                                <input value={this.address} onChange={this.handleChange} id="address" placeholder="Ввод"/>
+                                <input value={this.addr} onChange={this.handleChange} id="address" placeholder="Ввод"/>
                             </label>
                         </form>
                         <ul className="table__list">
@@ -147,17 +154,38 @@ export default class CreatePage extends React.Component {
                             {this.state.items.map(( item, index ) => {
                                 return(
                                     <li className="table__block" key={index}>
-                                        <div className="table__box number"><img onClick={() => this.handleClick(item.num)} src={edit}/> {item.num}</div>
-                                        <div className="table__box id">{item.id}</div>
-                                        <div className="table__box kpgz">{item.kpgz === undefined ? "КПГЗ" : item.kpgz}</div>
-                                        <div className="table__box code">{item.code}</div>
-                                        <div className="table__box cpgz" >{item.spgz === undefined ? "СПГЗ" : item.spgz}</div>
-                                        <div className="table__box name">{item.name.length > 34 ? item.name.substring(0, 35).concat("...") : item.name}</div>
-                                        <div className="table__box measure">{item.measure}</div>
-                                        <div className="table__box unit">{item.unit}</div>
-                                        <div className="table__box price">{item.singlecost === undefined ? "Цена за ед. ТРУ, руб" : item.singlecost}</div>
-                                        <div className="table__box cost">{item.allcost === undefined ? "Стоимость за ТРУ, руб" : item.allcost}</div>
-                                        <div className="table__box address">{item.address === undefined ? "Адрес" : item.address}</div>
+                                        <div className="table__box number" style={item.keywork === true ? {background:"#E9FFEA"} : {background:"#FFF4E9"}}>
+                                            <img onClick={() => this.handleClick(item.num)} src={edit}/> {item.num}
+                                        </div>
+                                        <div className="table__box id" style={item.keywork === true ? {background:"#E9FFEA"} : {background:"#FFF4E9"}}>
+                                            {item.id}
+                                        </div>
+                                        <div className="table__box kpgz" style={item.keywork === true ? {background:"#E9FFEA"} : {background:"#FFF4E9"}}>
+                                            {item.kpgz === undefined ? "КПГЗ" : item.kpgz}</div>
+                                        <div className="table__box code" style={item.keywork === true ? item.fat === true ? {background:"#E9FFEA", fontWeight: 700} : {background:"#E9FFEA"} : item.fat === true ? {background:"#FFF4E9", fontWeight: 700} : {background:"#FFF4E9"}}>
+                                            {item.code}
+                                        </div>
+                                        <div className="table__box cpgz" style={item.keywork === true ? {background:"#E9FFEA"} : {background:"#FFF4E9"}}>
+                                            {item.spgz === undefined ? "СПГЗ" : item.spgz}
+                                        </div>
+                                        <div className="table__box name" style={item.keywork === true ? {background:"#E9FFEA"} : {background:"#FFF4E9"}}>
+                                            {item.name.length > 34 ? item.name.substring(0, 35).concat("...") : item.name}
+                                        </div>
+                                        <div className="table__box measure" style={item.keywork === true ? {background:"#E9FFEA"} : {background:"#FFF4E9"}}>
+                                            {item.measure}
+                                        </div>
+                                        <div className="table__box unit" style={item.keywork === true ? {background:"#E9FFEA"} : {background:"#FFF4E9"}}>
+                                            {item.unit}
+                                        </div>
+                                        <div className="table__box price" style={item.keywork === true ? {background:"#E9FFEA"} : {background:"#FFF4E9"}}>
+                                            {item.singlecost === undefined ? "Цена за ед. ТРУ, руб" : item.singlecost}
+                                        </div>
+                                        <div className="table__box cost" style={item.keywork === true ? {background:"#E9FFEA"} : {background:"#FFF4E9"}}>
+                                            {item.allcost === undefined ? "Стоимость за ТРУ, руб" : item.allcost}
+                                        </div>
+                                        <div className="table__box address" style={item.keywork === true ? {background:"#E9FFEA"} : {background:"#FFF4E9"}}>
+                                            {item.addr === undefined ? "Адрес" : item.addr}
+                                        </div>
                                     </li>
                                 )
                             })}

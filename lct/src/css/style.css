@@ -277,6 +277,12 @@ body {
   line-height: 19px;
   color: rgba(16, 16, 16, 0.5);
 }
+.download__str {
+  width: 850px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .view {
   width: 911px;
@@ -331,7 +337,6 @@ body {
 }
 .panel__export {
   cursor: pointer;
-  margin-right: 20px;
   width: 196px;
   height: 64px;
   background: #101010;
@@ -478,6 +483,15 @@ body {
 .table .address {
   width: 236px;
 }
+.table .number1 {
+  width: 100px;
+}
+.table .number1 img {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 
 .table-start {
   -moz-user-select: none;
@@ -525,6 +539,15 @@ body {
 }
 .header__support img {
   margin-right: 10px;
+}
+.header__spisok {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #000000;
+  margin-left: 40px;
 }
 .header__menu {
   display: flex;
@@ -599,7 +622,7 @@ body {
 .qa__block:last-child {
   margin-right: 0;
 }
-.qa__block img {
+.qa__img {
   width: 24px;
   height: 24px;
 }
@@ -793,6 +816,78 @@ body {
 }
 .last-projects__btn {
   cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal__content {
+  width: 640px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 40px;
+}
+.modal__row {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.modal__heading {
+  margin-top: 30px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  color: #101010;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.modal__text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+  color: #101010;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.modal__text:last-child {
+  margin-bottom: 0;
+}
+.modal__icon {
+  width: 64px;
+}
+.modal__ser {
+  margin-bottom: 20px;
+  width: 560px;
+  height: 44px;
+}
+.modal__close {
+  margin-top: 112px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+  color: #FF5840;
+  align-self: end;
+}
+.modal__close img {
+  margin-left: 10px;
 }
 
 .home {
