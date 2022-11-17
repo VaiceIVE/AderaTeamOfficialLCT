@@ -10,7 +10,6 @@ export default class Guide extends React.Component {
         super(props);
         this.state = {
             items: [],
-            edit: [],
             kpgz: "",
             num: 0,
             name: "",
@@ -21,9 +20,10 @@ export default class Guide extends React.Component {
     };
 
     componentDidMount() {
-        this.setState({ 
-            items: GuideData,
-            edit: GuideData,
+        axios.get('https://2051-188-72-108-227.eu.ngrok.io/api/getdct').then((resp) => {
+            this.setState({
+                items: resp.data,
+            })
         });
     }
 
