@@ -48,7 +48,7 @@ export default class Download extends React.Component {
             );
 
             console.log("Ok");
-            axios.post('http://localhost:8000/api/table', formData, {
+            axios.post('https://2051-188-72-108-227.eu.ngrok.io/api/table', formData, {
                 headers: {
                     'Content-Type': `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; boundary=${formData._boundary}`
                 }
