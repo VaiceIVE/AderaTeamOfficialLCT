@@ -26,6 +26,9 @@ class Item(BaseModel):
 def home():
     return{"key": "Hello"}
 
+@app.post('/getdictionary')
+def updictionary():
+    return keywords
 
 @app.post('/exprocess')
 def exeltable(file: UploadFile):
@@ -46,7 +49,5 @@ def updictionary(req: Item):
     keywords.append(item)
     return keywords
 
-@app.get('/getdictionary')
-def updictionary():
-    return keywords
+
 
