@@ -20,10 +20,16 @@ export default class Guide extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('https://2051-188-72-108-227.eu.ngrok.io/api/getdct').then((resp) => {
+        axios.post('https://2051-188-72-108-227.eu.ngrok.io/api/getdct', JSON.stringify(''), {
+            headers: {
+                'Content-Type': `application/json`
+            }
+        }).then((resp) => {
             this.setState({
                 items: resp.data,
-            })
+            });
+        }).catch((err) => {
+            console.log(err);
         });
     }
 
