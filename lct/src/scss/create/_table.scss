@@ -33,6 +33,8 @@
     }
     &__form {
         display: flex;
+        align-items: center;
+        justify-content: space-between;
         margin-bottom: 30px;
         input {
             width: 150px;
