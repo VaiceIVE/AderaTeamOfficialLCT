@@ -35,14 +35,15 @@ export default class Guide extends React.Component {
                 spgz: this.state.spgz,
             };
             console.log("Ok");
-            axios.post('https://c2ed-188-72-108-227.eu.ngrok.io/updatedictionary', updateData, {
+            axios.post('https://2051-188-72-108-227.eu.ngrok.io/api/updct', JSON.stringify(updateData), {
                 headers: {
                     'Content-Type': `application/json`
                 }
             }).then((responseFromServer) => {
                 this.setState({
-                    items: responseFromServer,
-                })
+                    items: responseFromServer.data,
+                });
+                //console.log(this.state.items);
             }).catch((err) => {
                 console.log(err);
             });
