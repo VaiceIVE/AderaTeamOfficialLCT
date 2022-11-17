@@ -46,3 +46,7 @@ def updictionary(req: Item):
     keywords.append(item)
     return keywords
 
+@app.get('/getdictionary')
+def updictionary():
+    return keywords
+
